@@ -4,11 +4,6 @@ const
   QueryUtils = require('./index')
 ;
 
-function includeMsg(platformFilter, platform) {
-  // if platformFilter is set, then filter out other platform messages
-  return !platformFilter || platformFilter === platform;
-}
-
 module.exports = (apiaiResponse, platformFilter) => {
   let
     fulfillment = QueryUtils.getResponseFulfillment(apiaiResponse),
