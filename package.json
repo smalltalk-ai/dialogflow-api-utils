@@ -11,7 +11,8 @@
     "url": "git+https://github.com/smalltalk-ai/dialogflow-api-utils.git"
   },
   "keywords": [
-    "api.ai"
+    "api.ai",
+    "dialogflow"
   ],
   "author": "dialogflow",
   "license": "ISC",
