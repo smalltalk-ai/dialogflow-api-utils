@@ -2,16 +2,13 @@
 
 const
   QueryUtils = require('./index'),
-  getMessages = require('./_get_messages')
+  Internal = require('./internal')
 ;
 
 module.exports = (apiaiResponse, platformFilter) => {
   let
-    messages = getMessages(apiaiResponse)
+    messages = Internal.getMessages(apiaiResponse)
   ;
 
-  return !platformFilter ?
-    messages :
-    messages.filter(message => message.platform === platformFilter)
-  ;
+  return Internal.filterMessages(messages, platformFilter);
 };
