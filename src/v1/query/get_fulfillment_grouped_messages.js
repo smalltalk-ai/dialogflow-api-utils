@@ -52,17 +52,12 @@ module.exports = (apiaiResponse, platformFilter) => {
       }
     }
     switch (msgType) {
-      case 0: // text
-      case 2: // quick replies
-      case 3: // image
-      case 4: // payload
-        // add to outgoing messages
-        fixedMsgs = fixedMsgs.concat(message);
-        break;
       case 1:
         // handled above
         break;
-      default:
+      default: // 0 - text, 2 - quick relies, 3 - images, 4 - payload and others
+        // add to outgoing messages
+        fixedMsgs = fixedMsgs.concat(message);
     }
   });
   return Internal.filterMessages(fixedMsgs, platformFilter);
