@@ -1,7 +1,6 @@
 'use strict';
 
 const
-  QueryUtils = require('./index'),
   Internal = require('./internal')
 ;
 
