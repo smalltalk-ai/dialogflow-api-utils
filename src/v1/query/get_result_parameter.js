@@ -10,7 +10,7 @@ module.exports = (apiaiResponse, parameterName, defaultValue) => {
     return defaultValue;
   }
   let
-    result = QueryUtils.getResponseResult(apiaiResponse)
+    parameters = QueryUtils.getResultParameters(apiaiResponse)
   ;
-  return result.parameters && result.parameters[parameterName] || defaultValue;
+  return parameters[parameterName] || defaultValue;
 };
