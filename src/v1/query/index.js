@@ -6,4 +6,4 @@ exports.getResponseContextParameters = require('./get_response_context_parameter
 exports.getResponseResult = require('./get_response_result');
 exports.getResultParameter = require('./get_result_parameter');
 exports.getResultParameters = require('./get_result_parameters');
-//exports.mergeContexts = require('./merge_contexts');
+exports.mergeContexts = require('./merge_contexts');
