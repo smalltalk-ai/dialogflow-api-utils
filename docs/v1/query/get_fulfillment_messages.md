@@ -22,10 +22,10 @@ request.on('response', function(response) {
 
 
 ### Return Value
-An array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects). If the `response.result.fulfillment.messages` and `response.result.fulfillment.speech` are empty, an empty array (`[]`) is returned.
+An array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects). If the `result.fulfillment.messages` and `result.fulfillment.speech` are empty, an empty array (`[]`) is returned.
 
 ## Description
-The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) returns a `result.fulfillment` object which contains `messages` or `speech`. 
+The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) returns a `result.fulfillment` object which contains `messages` or `speech`.
 
 ## Examples
 ```js

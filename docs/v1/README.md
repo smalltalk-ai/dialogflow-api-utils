@@ -1,4 +1,4 @@
-# v1 Utility Documentation
+# v1 API Utility Documentation
 Below are a list of all the methods that are available for the v1 of the API
 
 ## Query

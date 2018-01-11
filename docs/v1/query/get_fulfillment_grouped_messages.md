@@ -2,7 +2,7 @@
 The `getFulfillmentGroupedMessages()` method returns a modified array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) from the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses).
 
 ## Synopsis
-Returns an array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) with the [Cards Message objects](https://dialogflow.com/docs/reference/agent/message-objects#card_message_object) are grouped into sets.
+Returns an array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) with the [Cards Message objects](https://dialogflow.com/docs/reference/agent/message-objects#card_message_object) grouped into sets.
 
 ## Syntax
 
@@ -22,14 +22,14 @@ request.on('response', function(response) {
 
 
 ### Return Value
-An array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) with the Card messages grouped. If the `response.result.fulfillment.messages` and `response.result.fulfillment.speech` are empty, an empty array (`[]`) is returned.
+An array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) with the Card messages grouped. If the `result.fulfillment.messages` and `result.fulfillment.speech` are empty, an empty array (`[]`) is returned.
 
 ## Description
-The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) returns a `result.fulfillment` object which contains Card Messages listed as individual messages. However, on most platforms, Cards are grouped. `getMessages` will group the Cards and/or filter messages for a specific `platform`.
+The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) returns a `result.fulfillment` object which contains Card Messages listed as individual messages. However, on most platforms, Cards are grouped. `getFulfillmentGroupedMessages` will group the Cards and/or filter messages for a specific `platform`.
 
 ## Examples
 ```js
-const dffUtils = require('dialogflow-fulfillment-utilities')
+const dfUtils = require('dialogflow-api-utils').v1
 var dialogFlowResponse = {
   "result": {
     "fulfillment": {
@@ -64,7 +64,7 @@ var dialogFlowResponse = {
   }
 }
 
-var messages = dffUtils.getMessages(dialogFlowResponse)
+var messages = dfUtils.Query.getFulfillmentGroupedMessages(dialogFlowResponse)
 ```
 `messages` value
 

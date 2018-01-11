@@ -16,7 +16,8 @@ Below is an example how to use the module along with the `api` module.
 
 ```javascript
 const apiai = require('apiai');
-const dffUtils = require('dialogflow-api-utils').v1;
+// Utilities for v1 of the Dialogflow API
+const dfUtils = require('dialogflow-api-utils').v1;
 
 const app = apiai("<your client access token>");
 
@@ -26,19 +27,19 @@ var request = app.textRequest('<Your text query>', {
 
 request.on('response', function(response) {
   // get all the parameters
-  var params = dffUtils.Query.getResultParameters(response);
-  // get the parameter 'foo', if it isn't set, the return 'bar'
-  var fooParam = dffUtils.Query.getResultParameter(response, 'foo', 'bar');
+  var params = dfUtils.Query.getResultParameters(response);
+  // get the value of parameter 'foo', if it isn't set, the return 'bar'
+  var fooParam = dfUtils.Query.getResultParameter(response, 'foo', 'bar');
 
   // get all the messages from fulfillment
-  var messages = dffUtils.Query.getFulfillmentMessages(response);
+  var messages = dfUtils.Query.getFulfillmentMessages(response);
   // only get the messages for Facebook Messenger
-  var fbMessages = dffUtils.Query.getFulfillmentMessages(response, 'facebook');
+  var fbMessages = dfUtils.Query.getFulfillmentMessages(response, 'facebook');
   // only get the messages for Slack
-  var slackMessages = dffUtils.Query.getFulfillmentMessages(response, 'slack');
+  var slackMessages = dfUtils.Query.getFulfillmentMessages(response, 'slack');
 
   // get the context 'userProfile'
-  var userProfileContext = dffUtils.Query.getResponseContext(response, 'userProfile');
+  var userProfileContext = dfUtils.Query.getResponseContext(response, 'userProfile');
 
   // code to send messages
 });
