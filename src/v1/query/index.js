@@ -1,5 +1,6 @@
 'use strict';
 
+exports.getFulfillmentMessages = require('./get_fulfillment_messages');
 exports.getResponseContext = require('./get_response_context');
 exports.getResponseContexts = require('./get_response_contexts');
 exports.getResponseContextParameters = require('./get_response_context_parameters');

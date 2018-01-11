@@ -1,0 +1,392 @@
+'use strict';
+
+const
+  chai = require('chai'),
+  expect = chai.expect,
+  QueryUtils = require('./index')
+;
+
+function generateResponse(messages, speech) {
+  speech = speech || 'foo bar';
+  return {
+    result: {
+      fulfillment: {
+        speech,
+        messages
+      }
+    }
+  }
+}
+
+describe('V1.Query', () => {
+  it('getFulfillmentMessages() should return empty if no parameters are passed in', () => {
+    const expected = [];
+    expect(QueryUtils.getFulfillmentMessages()).to.deep.equal(expected);
+  });
+
+  it('getFulfillmentMessages() should return empty if empty response is passed in', () => {
+    const
+      response = {
+
+      },
+      expected = []
+    ;
+    expect(QueryUtils.getFulfillmentMessages(response)).to.deep.equal(expected);
+  });
+
+  it('getFulfillmentMessages() should return empty if empty response.fulfillment is passed in', () => {
+    const
+      response = {
+        fulfillment: {}
+      },
+      expected = []
+    ;
+    expect(QueryUtils.getFulfillmentMessages(response)).to.deep.equal(expected);
+  });
+
+  it('getFulfillmentMessages() should return empty if empty messages and speech are passed in', () => {
+    const
+      response = {
+        result: {
+          fulfillment: {
+            messages: []
+          }
+        }
+      },
+      expected = []
+    ;
+    expect(QueryUtils.getFulfillmentMessages(response)).to.deep.equal(expected);
+  });
+
+  it('getFulfillmentMessages() should return speech if empty messages are passed in', () => {
+    const
+      response = generateResponse([], 'no messages'),
+      expected = [{
+        type: 0,
+        speech: 'no messages'
+      }]
+    ;
+    expect(QueryUtils.getFulfillmentMessages(response)).to.deep.equal(expected);
+  });
+
+  it('getFulfillmentMessages() should return same if 1 default message is passed in', () => {
+    const
+      messages = [{
+        "type": 0,
+        "speech": "hi"
+      }],
+      expected = [{
+        "type": 0,
+        "speech": "hi"
+      }]
+    ;
+    expect(QueryUtils.getFulfillmentMessages(generateResponse(messages))).to.deep.equal(expected);
+  });
+
+  it('getFulfillmentMessages() should return all messages if messages contains mixed types', () => {
+    const
+      messages = [{
+      		"type": 0,
+      		"platform": "slack",
+      		"speech": "hi"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "facebook",
+      		"speech": "hi"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "slack",
+      		"speech": "default 2"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "facebook",
+      		"speech": "default 2"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "facebook",
+      		"speech": "text 1"
+      	},
+      	{
+      		"type": 0,
+      		"speech": "hi"
+      	},
+      	{
+      		"type": 0,
+      		"speech": "default 2"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "slack",
+      		"speech": "text 1 - 3"
+      	},
+      	{
+      		"type": 3,
+      		"platform": "slack",
+      		"imageUrl": "https://c1.staticflickr.com/4/3015/2765083201_55a958db14_b.jpg"
+      	},
+      	{
+      		"type": 2,
+      		"platform": "slack",
+      		"title": "QR - Title",
+      		"replies": [
+      			"1st response",
+      			"2nd response"
+      		]
+      	},
+      	{
+      		"type": 1,
+      		"platform": "slack",
+      		"title": "Card 1 Title",
+      		"subtitle": "Card 1 Subtitle",
+      		"buttons": [{
+      				"text": "Button 1",
+      				"postback": "clicked-btn-1"
+      			},
+      			{
+      				"text": "Button 2",
+      				"postback": ""
+      			},
+      			{
+      				"text": "https://www.google.com/",
+      				"postback": ""
+      			}
+      		]
+      	},
+      	{
+      		"type": 1,
+      		"platform": "slack",
+      		"title": "Card 2 Title",
+      		"imageUrl": "https://c1.staticflickr.com/4/3015/2765083201_55a958db14_b.jpg",
+      		"buttons": [{
+      			"text": "Card 2 Btn 1",
+      			"postback": "click-card2-btn-1"
+      		}]
+      	}
+      ],
+      expected = [{
+      		"type": 0,
+      		"platform": "slack",
+      		"speech": "hi"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "facebook",
+      		"speech": "hi"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "slack",
+      		"speech": "default 2"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "facebook",
+      		"speech": "default 2"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "facebook",
+      		"speech": "text 1"
+      	},
+      	{
+      		"type": 0,
+      		"speech": "hi"
+      	},
+      	{
+      		"type": 0,
+      		"speech": "default 2"
+      	},
+      	{
+      		"type": 0,
+      		"platform": "slack",
+      		"speech": "text 1 - 3"
+      	},
+      	{
+      		"type": 3,
+      		"platform": "slack",
+      		"imageUrl": "https://c1.staticflickr.com/4/3015/2765083201_55a958db14_b.jpg"
+      	},
+      	{
+      		"type": 2,
+      		"platform": "slack",
+      		"title": "QR - Title",
+      		"replies": [
+      			"1st response",
+      			"2nd response"
+      		]
+      	},
+      	{
+      		"type": 1,
+      		"platform": "slack",
+      		"title": "Card 1 Title",
+      		"subtitle": "Card 1 Subtitle",
+      		"buttons": [{
+      				"text": "Button 1",
+      				"postback": "clicked-btn-1"
+      			},
+      			{
+      				"text": "Button 2",
+      				"postback": ""
+      			},
+      			{
+      				"text": "https://www.google.com/",
+      				"postback": ""
+      			}
+      		]
+      	},
+      	{
+      		"type": 1,
+      		"platform": "slack",
+      		"title": "Card 2 Title",
+      		"imageUrl": "https://c1.staticflickr.com/4/3015/2765083201_55a958db14_b.jpg",
+      		"buttons": [{
+      			"text": "Card 2 Btn 1",
+      			"postback": "click-card2-btn-1"
+      		}]
+      	}
+      ]
+    ;
+    expect(QueryUtils.getFulfillmentMessages(generateResponse(messages))).to.deep.equal(expected);
+  });
+
+  it('getFulfillmentMessages() should return only platform messages if messages contain multiple platforms', () => {
+    const
+      filterPlatform = 'facebook',
+      messages = [{
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 1",
+          "buttons": [{
+            "text": "card 1 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 2",
+          "buttons": [{
+            "text": "card 2 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "slack",
+          "title": "Card 1",
+          "buttons": [{
+            "text": "card 1 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "slack",
+          "title": "Card 2",
+          "buttons": [{
+            "text": "card 2 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 0,
+          "platform": "facebook",
+          "speech": "text between card group"
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 3",
+          "buttons": [{
+            "text": "card 3 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 4",
+          "buttons": [{
+            "text": "card 4 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "slack",
+          "title": "Card 3",
+          "buttons": [{
+            "text": "card 3 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "slack",
+          "title": "Card 4",
+          "buttons": [{
+            "text": "card 4 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 0,
+          "platform": "slack",
+          "speech": "foo bar"
+        },
+        {
+          "type": 0,
+          "speech": ""
+        }
+      ],
+      expected = [{
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 1",
+          "buttons": [{
+            "text": "card 1 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 2",
+          "buttons": [{
+            "text": "card 2 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 0,
+          "platform": "facebook",
+          "speech": "text between card group"
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 3",
+          "buttons": [{
+            "text": "card 3 btn",
+            "postback": ""
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 4",
+          "buttons": [{
+            "text": "card 4 btn",
+            "postback": ""
+          }]
+        }
+      ]
+    ;
+    expect(QueryUtils.getFulfillmentMessages(generateResponse(messages), filterPlatform)).to.deep.equal(expected);
+  });
+
+});
