@@ -1,5 +1,5 @@
 # getResultParameter
-The `getResultParameter()` method returns the value of a "parameter_name":"parameter_value" pair from the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses).
+The `getResultParameter()` method returns the value from a "parameter_name":"parameter_value" pair from the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses).
 
 ## Synopsis
 Returns the `parameter_value` of the specified  "parameter_name":"parameter_value" pair. It either returns the value or the specified `defaultValue`.
