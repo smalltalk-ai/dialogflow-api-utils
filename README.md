@@ -1,7 +1,7 @@
 # dialogflow-api-utils
 [![npm](https://img.shields.io/npm/v/dialogflow-api-utils.svg)](https://www.npmjs.com/package/dialogflow-api-utils)
 
-Utility lib for working with [Dialogflow (formerly api.ai) API](https://dialogflow.com/docs/reference/agent)
+Utility lib for working with [Dialogflow (formerly api.ai) API](https://dialogflow.com/docs/reference/agent) response data
 
 ## Installation
 
