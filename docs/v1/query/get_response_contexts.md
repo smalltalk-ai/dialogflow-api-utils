@@ -9,13 +9,13 @@ Returns an array of `context` objects. It either returns the `result.contexts` a
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(apiaiResponse) {
-  var contexts = dfQueryUtils.getResponseContexts(apiaiResponse[, nameMatch])
+request.on('response', function(queryResponse) {
+  var contexts = dfQueryUtils.getResponseContexts(queryResponse[, nameMatch])
 }
 ```
 
 ### Parameters
-- `response`<br>
+- `queryResponse`<br>
    the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses)
 - `nameMatch` | *optional*<br>
   a RegEx pattern to match the `context` name

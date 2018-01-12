@@ -9,13 +9,13 @@ Returns the `parameter_value` of the specified  "parameter_name":"parameter_valu
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(apiaiResponse) {
-  var contexts = dfQueryUtils.getResultParameter(apiaiResponse)
+request.on('response', function(queryResponse) {
+  var contexts = dfQueryUtils.getResultParameter(queryResponse)
 }
 ```
 
 ### Parameters
-- `response`<br>
+- `queryResponse`<br>
    the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses)
 - `parameterName`
   the parameter_name of the pair

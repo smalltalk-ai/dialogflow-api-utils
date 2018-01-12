@@ -9,13 +9,13 @@ Returns an the `result` object containing the results of the natual language pro
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(response) {
-  var result = dfQueryUtils.getResponseResult(response)
+request.on('response', function(queryResponse) {
+  var result = dfQueryUtils.getResponseResult(queryResponse)
 }
 ```
 
 ### Parameters
-- `response`<br>
+- `queryResponse`<br>
    the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses)
 
 ### Return Value

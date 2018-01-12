@@ -9,8 +9,8 @@ Returns an the array of [Dialogflow Message objects](https://dialogflow.com/docs
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(response) {
-  var messages = dfQueryUtils.getFulfillmentMessages(response[, platformFilter])
+request.on('response', function(queryResponse) {
+  var messages = dfQueryUtils.getFulfillmentMessages(queryResponse[, platformFilter])
 }
 ```
 

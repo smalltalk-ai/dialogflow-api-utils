@@ -9,13 +9,13 @@ Returns an array of [Dialogflow Message objects](https://dialogflow.com/docs/ref
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(response) {
-  var messages = dfQueryUtils.getFulfillmentGroupedMessages(response[, platformFilter])
+request.on('response', function(queryResponse) {
+  var messages = dfQueryUtils.getFulfillmentGroupedMessages(queryResponse[, platformFilter])
 }
 ```
 
 ### Parameters
-- `response`<br>
+- `queryResponse`<br>
    the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses)
 - `platformFilter` | *optional*<br>
   only return messages from the specified platform, e.g., `facebook`|`kik`|`line`|`skype`|`slack`|`telegram`|`viber`
