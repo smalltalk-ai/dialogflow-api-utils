@@ -34,7 +34,7 @@ To get the messages in their native format, use [`getFulfillmentMessages`](get_f
 ### Grouping Cards
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "result": {
     "fulfillment": {
       "speech": "hi",
@@ -68,7 +68,7 @@ var dialogFlowResponse = {
   }
 }
 
-var messages = dfUtils.Query.getFulfillmentGroupedMessages(dialogFlowResponse)
+var messages = dfUtils.Query.getFulfillmentGroupedMessages(dfQueryResponse)
 ```
 `messages` value
 
@@ -106,7 +106,7 @@ notes: the 2 Card Message objects are grouped into a single Card set
 ### Filter Messages
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "result": {
     "fulfillment": {
       "speech": "hi",
@@ -155,7 +155,7 @@ var dialogFlowResponse = {
   }
 }
 
-var filteredMessages = dfUtils.Query.getFulfillmentGroupedMessages(dialogFlowResponse, 'facebook')
+var filteredMessages = dfUtils.Query.getFulfillmentGroupedMessages(dfQueryResponse, 'facebook')
 ```
 `filteredMessages` value
 

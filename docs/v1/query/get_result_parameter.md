@@ -35,7 +35,7 @@ A helper method which always returns an object. `getResultParameter` either retu
 ### Get a Parameter with a value
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "id": "119a93ae-0e20-4df9-a595-97c239205de1",
   "timestamp": "2017-04-14T16:04:44.343Z",
   "lang": "en",
@@ -88,7 +88,7 @@ var dialogFlowResponse = {
   },
   "sessionId": "1ad23fa6-7758-4cf6-8525-c88a08c87293"
 }
-var paramValue = dfUtils.Query.getResultParameter(dialogFlowResponse, 'address', '')
+var paramValue = dfUtils.Query.getResultParameter(dfQueryResponse, 'address', '')
 ```
 `paramValue` value
 
@@ -98,7 +98,7 @@ var paramValue = dfUtils.Query.getResultParameter(dialogFlowResponse, 'address',
 ### Get a missing parameter
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "id": "119a93ae-0e20-4df9-a595-97c239205de1",
   "timestamp": "2017-04-14T16:04:44.343Z",
   "lang": "en",
@@ -151,10 +151,10 @@ var dialogFlowResponse = {
   },
   "sessionId": "1ad23fa6-7758-4cf6-8525-c88a08c87293"
 }
-var paramValue1 = dfUtils.Query.getResultParameter(dialogFlowResponse, 'city', 'Washington')
-var paramValue2 = dfUtils.Query.getResultParameter(dialogFlowResponse, 'city', null)
+var paramValue1 = dfUtils.Query.getResultParameter(dfQueryResponse, 'city', 'Washington')
+var paramValue2 = dfUtils.Query.getResultParameter(dfQueryResponse, 'city', null)
 ```
-`paramValue1` value
+values
 
 ```js
 // paramValue1 value

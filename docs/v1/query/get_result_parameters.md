@@ -28,7 +28,7 @@ A helper method which always returns an object. `getResultParameters` either ret
 
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "id": "119a93ae-0e20-4df9-a595-97c239205de1",
   "timestamp": "2017-04-14T16:04:44.343Z",
   "lang": "en",
@@ -81,7 +81,7 @@ var dialogFlowResponse = {
   },
   "sessionId": "1ad23fa6-7758-4cf6-8525-c88a08c87293"
 }
-var parameters = dfUtils.Query.getResultParameters(dialogFlowResponse)
+var parameters = dfUtils.Query.getResultParameters(dfQueryResponse)
 ```
 `parameters` value
 
