@@ -1,8 +1,8 @@
 # getFulfillmentMessages
-The `getFulfillmentMessages()` method returns an array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) from the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses).
+The `getFulfillmentMessages()` method returns an array of [Dialogflow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) from the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses).
 
 ## Synopsis
-Returns an the array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) from the `response.result.fulfillment.messages`.
+Returns an the array of [Dialogflow Message objects](https://dialogflow.com/docs/reference/agent/message-objects) from the `response.result.fulfillment.messages`.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ request.on('response', function(response) {
 
 
 ### Return Value
-An array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects). If the `result.fulfillment.messages` and `result.fulfillment.speech` are empty, an empty array (`[]`) is returned.
+An array of [Dialogflow Message objects](https://dialogflow.com/docs/reference/agent/message-objects). If the `result.fulfillment.messages` and `result.fulfillment.speech` are empty, an empty array (`[]`) is returned.
 
 ## Description
 The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) returns a `result.fulfillment` object which contains `messages` or `speech`. `getFulfillmentMessages` returns the whole array or a filtered array.

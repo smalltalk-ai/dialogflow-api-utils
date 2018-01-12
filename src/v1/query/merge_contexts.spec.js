@@ -51,6 +51,23 @@ describe('V1.Query', () => {
     expect(QueryUtils.mergeContexts(sourceContexts, newContexts)).to.deep.equal(expected);
   });
 
+  it('mergeContexts() should return merged contexts if both arrays have complex context', () => {
+    const
+      sourceContexts = [
+        { name: 'enroll', parameters: { foo: 'bar' } }
+      ],
+      newContexts = [
+        { name: 'enroll', parameters: { bar: 'foo' } },
+        { name: 'enroll-test', parameters: { foo: 'bar' } }
+      ],
+      expected = [
+        { name: 'enroll', parameters: { foo: 'bar', bar: 'foo' } },
+        { name: 'enroll-test', parameters: { foo: 'bar' } }
+      ]
+    ;
+    expect(QueryUtils.mergeContexts(sourceContexts, newContexts)).to.deep.equal(expected);
+  });
+
   it('mergeContexts() should ignore context if name is not set', () => {
     const
       sourceContexts = [
