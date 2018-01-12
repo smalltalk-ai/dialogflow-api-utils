@@ -25,11 +25,11 @@ request.on('response', function(response) {
 An array of [DialogFlow Message objects](https://dialogflow.com/docs/reference/agent/message-objects). If the `result.fulfillment.messages` and `result.fulfillment.speech` are empty, an empty array (`[]`) is returned.
 
 ## Description
-The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) returns a `result.fulfillment` object which contains `messages` or `speech`.
+The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) returns a `result.fulfillment` object which contains `messages` or `speech`. `getFulfillmentMessages` returns the whole array or a filtered array.
 
 ## Examples
 ```js
-const dffUtils = require('dialogflow-fulfillment-utilities')
+const dfUtils = require('dialogflow-api-utils').v1
 var dialogFlowResponse = {
   "result": {
     "fulfillment": {
@@ -64,7 +64,7 @@ var dialogFlowResponse = {
   }
 }
 
-var messages = dffUtils.getMessages(dialogFlowResponse)
+var messages = dfUtils.Query.getFulfillmentMessages(dialogFlowResponse)
 ```
 `messages` value
 
@@ -77,24 +77,107 @@ var messages = dffUtils.getMessages(dialogFlowResponse)
   {
     "type": 1,
     "platform": "facebook",
-    "cards": [{
-        "title": "Card 1 Title",
-        "subtitle": "Card 1 Subtitle",
-        "buttons": [{
-          "text": "Button 1",
-          "postback": "clicked-btn-1"
-        }]
-      },
-      {
-        "title": "Card 2 Title",
-        "subtitle": "Card 2 Subtitle",
-        "buttons": [{
-          "text": "Button 2",
-          "postback": "clicked-btn-2"
-        }]
-      }
-    ]
+    "title": "Card 1 Title",
+    "subtitle": "Card 1 Subtitle",
+    "buttons": [{
+      "text": "Button 1",
+      "postback": "clicked-btn-1"
+    }]
+  },
+  {
+    "type": 1,
+    "platform": "facebook",
+    "title": "Card 2 Title",
+    "subtitle": "Card 2 Subtitle",
+    "buttons": [{
+      "text": "Button 2",
+      "postback": "clicked-btn-2"
+    }]
   }
 ]
 ```
-notes: the 2 Card Message objects are grouped into a single Card set
+
+### Filter Messages
+```js
+const dfUtils = require('dialogflow-api-utils').v1
+var dialogFlowResponse = {
+  "result": {
+    "fulfillment": {
+      "speech": "hi",
+      "messages": [{
+          "type": 0,
+          "platform": "slack",
+          "speech": "hi"
+        },
+        {
+          "type": 0,
+          "platform": "facebook",
+          "speech": "hi"
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 1 Title",
+          "subtitle": "Card 1 Subtitle",
+          "buttons": [{
+            "text": "Button 1",
+            "postback": "clicked-btn-1"
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "facebook",
+          "title": "Card 2 Title",
+          "subtitle": "Card 2 Subtitle",
+          "buttons": [{
+            "text": "Button 2",
+            "postback": "clicked-btn-2"
+          }]
+        },
+        {
+          "type": 1,
+          "platform": "slack",
+          "title": "Card 2 Title",
+          "subtitle": "Card 2 Subtitle",
+          "buttons": [{
+            "text": "Button 2",
+            "postback": "clicked-btn-2"
+          }]
+        }
+      ]
+    }
+  }
+}
+
+var filteredMessages = dfUtils.Query.getFulfillmentMessages(dialogFlowResponse, 'facebook')
+```
+`filteredMessages` value
+
+```js
+[{
+    "type": 0,
+    "platform": "facebook",
+    "speech": "hi"
+  },
+  {
+    "type": 1,
+    "platform": "facebook",
+    "title": "Card 1 Title",
+    "subtitle": "Card 1 Subtitle",
+    "buttons": [{
+      "text": "Button 1",
+      "postback": "clicked-btn-1"
+    }]
+  },
+  {
+    "type": 1,
+    "platform": "facebook",
+    "title": "Card 2 Title",
+    "subtitle": "Card 2 Subtitle",
+    "buttons": [{
+      "text": "Button 2",
+      "postback": "clicked-btn-2"
+    }]
+  }
+]
+```
