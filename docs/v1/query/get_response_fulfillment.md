@@ -9,13 +9,13 @@ Returns an the `result.fulfillment` object containing data about text response(s
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(response) {
-  var fulfillment = dfQueryUtils.getResponseFulfillment(response)
+request.on('response', function(queryResponse) {
+  var fulfillment = dfQueryUtils.getResponseFulfillment(queryResponse)
 }
 ```
 
 ### Parameters
-- `fulfillment`<br>
+- `queryResponse`<br>
    the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses)
 
 ### Return Value
@@ -27,7 +27,7 @@ A helper method which always returns an object. `getResponseFulfillment` either 
 ## Examples
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "id": "119a93ae-0e20-4df9-a595-97c239205de1",
   "timestamp": "2017-04-14T16:04:44.343Z",
   "lang": "en",
@@ -72,7 +72,7 @@ var dialogFlowResponse = {
   },
   "sessionId": "1ad23fa6-7758-4cf6-8525-c88a08c87293"
 }
-var fulfillment = dfUtils.Query.getResponseFulfillment(dialogFlowResponse)
+var fulfillment = dfUtils.Query.getResponseFulfillment(dfQueryResponse)
 ```
 `fulfillment` value
 

@@ -9,13 +9,13 @@ Returns an object consisting of "parameter_name":"parameter_value" and "paramete
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(apiaiResponse) {
-  var contexts = dfQueryUtils.getResponseContextParameters(apiaiResponse, contextName)
+request.on('response', function(queryResponse) {
+  var contexts = dfQueryUtils.getResponseContextParameters(queryResponse, contextName)
 }
 ```
 
 ### Parameters
-- `response`<br>
+- `queryResponse`<br>
    the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses)
 - `contextName`
   the `context` name
@@ -30,7 +30,7 @@ A helper method which always returns an object. `getResponseContextParameters` e
 
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "id": "119a93ae-0e20-4df9-a595-97c239205de1",
   "timestamp": "2017-04-14T16:04:44.343Z",
   "lang": "en",
@@ -83,9 +83,9 @@ var dialogFlowResponse = {
   },
   "sessionId": "1ad23fa6-7758-4cf6-8525-c88a08c87293"
 }
-var result = dfUtils.Query.getResponseContext(dialogFlowResponse, 'profile')
+var params = dfUtils.Query.getResponseContextParameters(dfQueryResponse, 'profile')
 ```
-`result` value
+`params` value
 
 ```js
 {

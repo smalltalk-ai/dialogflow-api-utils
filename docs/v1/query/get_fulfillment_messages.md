@@ -9,8 +9,8 @@ Returns an the array of [Dialogflow Message objects](https://dialogflow.com/docs
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(response) {
-  var messages = dfQueryUtils.getFulfillmentMessages(response[, platformFilter])
+request.on('response', function(queryResponse) {
+  var messages = dfQueryUtils.getFulfillmentMessages(queryResponse[, platformFilter])
 }
 ```
 
@@ -30,7 +30,7 @@ The Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_
 ## Examples
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "result": {
     "fulfillment": {
       "speech": "hi",
@@ -64,7 +64,7 @@ var dialogFlowResponse = {
   }
 }
 
-var messages = dfUtils.Query.getFulfillmentMessages(dialogFlowResponse)
+var messages = dfUtils.Query.getFulfillmentMessages(dfQueryResponse)
 ```
 `messages` value
 
@@ -100,7 +100,7 @@ var messages = dfUtils.Query.getFulfillmentMessages(dialogFlowResponse)
 ### Filter Messages
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "result": {
     "fulfillment": {
       "speech": "hi",
@@ -149,7 +149,7 @@ var dialogFlowResponse = {
   }
 }
 
-var filteredMessages = dfUtils.Query.getFulfillmentMessages(dialogFlowResponse, 'facebook')
+var filteredMessages = dfUtils.Query.getFulfillmentMessages(dfQueryResponse, 'facebook')
 ```
 `filteredMessages` value
 

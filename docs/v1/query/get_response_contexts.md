@@ -9,13 +9,13 @@ Returns an array of `context` objects. It either returns the `result.contexts` a
 ```js
 const dfQueryUtils = require('dialogflow-api-utils').v1.Query
 
-request.on('response', function(apiaiResponse) {
-  var contexts = dfQueryUtils.getResponseContexts(apiaiResponse[, nameMatch])
+request.on('response', function(queryResponse) {
+  var contexts = dfQueryUtils.getResponseContexts(queryResponse[, nameMatch])
 }
 ```
 
 ### Parameters
-- `response`<br>
+- `queryResponse`<br>
    the Dialogflow [`/query`](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses) [Response object](https://dialogflow.com/docs/reference/agent/query#get_and_post_responses)
 - `nameMatch` | *optional*<br>
   a RegEx pattern to match the `context` name
@@ -31,7 +31,7 @@ A helper method which always returns an array. `getResponseContexts` either retu
 ### Get all Contexts
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "id": "119a93ae-0e20-4df9-a595-97c239205de1",
   "timestamp": "2017-04-14T16:04:44.343Z",
   "lang": "en",
@@ -84,9 +84,9 @@ var dialogFlowResponse = {
   },
   "sessionId": "1ad23fa6-7758-4cf6-8525-c88a08c87293"
 }
-var result = dfUtils.Query.getResponseContexts(dialogFlowResponse)
+var contexts = dfUtils.Query.getResponseContexts(dfQueryResponse)
 ```
-`result` value
+`contexts` value
 
 ```js
 [{
@@ -114,7 +114,7 @@ var result = dfUtils.Query.getResponseContexts(dialogFlowResponse)
 ### Get set of Contexts
 ```js
 const dfUtils = require('dialogflow-api-utils').v1
-var dialogFlowResponse = {
+var dfQueryResponse = {
   "id": "119a93ae-0e20-4df9-a595-97c239205de1",
   "timestamp": "2017-04-14T16:04:44.343Z",
   "lang": "en",
@@ -175,9 +175,9 @@ var dialogFlowResponse = {
   },
   "sessionId": "1ad23fa6-7758-4cf6-8525-c88a08c87293"
 }
-var result = dfUtils.Query.getResponseContexts(dialogFlowResponse, '^profile')
+var contexts = dfUtils.Query.getResponseContexts(dfQueryResponse, '^profile')
 ```
-`result` value
+`contexts` value
 
 ```js
 [{

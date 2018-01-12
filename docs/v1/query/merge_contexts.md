@@ -1,8 +1,8 @@
 # mergeContexts
-The `mergeContexts()` method is used to merge two  arrays of `context` objects.
+The `mergeContexts()` method is used to merge two `Array`s of `context` objects.
 
 ## Synopsis
-Returns an array of `context` objects.
+Returns an `Array` of `context` objects.
 
 ## Syntax
 
