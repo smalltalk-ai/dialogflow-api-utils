@@ -5,7 +5,7 @@ Utility lib for working with [Dialogflow (formerly api.ai) API](https://dialogfl
 
 ## Installation
 
-* Requires Api.ai/Dialogflow SDK or similar
+* Requires Api.ai/Dialogflow SDK or similar to get data from Dialogflow (formerly api.ai)
 * Install module with `npm`:
 ```shell
 npm install --save dialogflow-api-utils
