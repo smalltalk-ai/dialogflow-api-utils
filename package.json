@@ -1,6 +1,6 @@
 {
   "name": "dialogflow-api-utils",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Utility lib for working with the Dialogflow (formerly api.ai) API response data",
   "main": "index.js",
   "scripts": {
