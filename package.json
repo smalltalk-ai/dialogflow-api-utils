@@ -1,6 +1,6 @@
 {
   "name": "dialogflow-api-utils",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Utility lib for working with the Dialogflow (formerly api.ai) API response data",
   "main": "index.js",
   "scripts": {
@@ -15,20 +15,20 @@
     "api.ai",
     "dialogflow"
   ],
-  "author": "Joshua Salwen <contact@smalltalk.ai> (https://www.smalltalk.ai)",
+  "author": "Joshua Salwen <contact@smalltalk.agency> (https://www.smalltalk.agency)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/smalltalk-ai/dialogflow-api-utils/issues"
   },
   "homepage": "https://github.com/smalltalk-ai/dialogflow-api-utils#readme",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "co-mocha": "^1.2.1",
-    "lodash": "^4.17.4",
-    "mocha": "^4.1.0",
-    "nyc": "^11.4.1"
+    "chai": "^4.2.0",
+    "co-mocha": "^1.2.2",
+    "lodash": "^4.17.15",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1"
   },
   "dependencies": {
-    "merge": "^1.2.0"
+    "merge": "^1.2.1"
   }
 }
